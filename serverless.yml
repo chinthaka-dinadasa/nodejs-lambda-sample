@@ -3,6 +3,14 @@ service: nodejs-lambda-sample
 provider:
   name: aws
   runtime: nodejs20.x
+  region: ap-southeast-1
+
+custom:
+  libLayerArn: arn:aws:lambda:ap-southeast-1:730335670276:layer:nodejs-layer-test:1
+
+package:
+  exclude:
+    - node_modules/**
 
 plugins:
   - serverless-offline
@@ -10,6 +18,8 @@ plugins:
 functions:
   hello:
     handler: handler.hello
+    layers:
+      - ${self:custom.libLayerArn}
     events:
       - httpApi:
           path: /
