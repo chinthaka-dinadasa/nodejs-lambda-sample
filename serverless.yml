@@ -6,7 +6,7 @@ provider:
   region: ap-southeast-1
 
 custom:
-  libLayerArn: arn:aws:lambda:ap-southeast-1:730335670276:layer:nodejs-layer-test:1
+  libLayerArn: arn:aws:lambda:${self:provider.region}:${aws:accountId}:layer:nodejs-layer-test:1
 
 package:
   exclude:
